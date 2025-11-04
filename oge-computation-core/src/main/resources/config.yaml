@@ -1,0 +1,113 @@
+dag-boot-conf:
+  dag-root-url: ""
+
+redis-conf:
+  jedis-host: ""
+  jedis-port:
+  jedis-pwd: ""
+  # Redis 超时时间
+  redis-cache-ttl: 120
+
+storage-conf:
+  # MinIO 基础配置
+  storage-type: "minio"
+  endpoint: ""
+  access-key: ""
+  secret-key: ""
+  bucket-name: ""
+  head-size:
+  max-connections:
+
+
+postgresql-conf:
+  # PostgreSQL 基础配置
+  postgresql-url: "jdbc:postgresql://"
+  postgresql-driver: "org.postgresql.Driver"
+  postgresql-user: ""
+  postgresql-pwd: ""
+  postgresql-max-retries:
+  postgresql-retry-delay:
+
+# GcConst
+gc-conf:
+  local-data-root: ""
+  http-data-root: ""
+  local-html-root: ""
+  algorithm-json: ""
+
+qgis-conf:
+  qgis-data: ""
+  qgis-algorithm-code: ""
+  qgis-host: ""
+  qgis-username: ""
+  qgis-password: ""
+  qgis-port: 22
+  # 暂时没出来
+  qgis-python: ""
+  qgis-rs: ""
+
+otb-conf:
+  otb-data: ""
+  otb-algorithm-code: ""
+  otb-docker-data: ""
+  otb-host: ""
+  otb-username: ""
+  otb-password: ""
+  otb-port: 22
+saga:
+  saga-data: ""
+  saga-docker-data: ""
+  saga-host: ""
+  saga-username: ""
+  saga-password: ""
+  saga-port:
+
+#  定量遥感算法
+quant:
+  quant-data-path: ""
+  quant-ac-path: ""
+  quant-host: ""
+  quant-username: ""
+  quant-password: ""
+  quant-port: 22
+
+third-application:
+  third-host: ""
+  third-username: ""
+  third-password: ""
+  docker-data: ""
+  server-data: ""
+  third-port: 22
+
+docker-swarm:
+  master-host: ""
+  registry-port:
+  constraint: ""
+  mode: ""
+  mount-type: ""
+  mount-source: ""
+  mount-target: ""
+  algorithm-json: ""
+  hub-server: ""
+  constraint-cpu: ""
+  constraint-gpu: ""
+
+service:
+  base-url: ""
+  third-source: ""
+
+others:
+  json-algorithms: "" # 存储json解析文件地址
+  temp-file-path: "" # 各类临时文件的地址
+  tms-path: "" # tms服务url
+  on-the-fly-storage: "" # tms瓦片存储地址
+  json-save-path: "" # geojson临时存储地址
+  bucket-name: ""
+  third-json: ""
+  saga-temp-file-path: ""
+  otb-temp-file-path: ""
+  tms-host: ""
+  tomcat-host: ""
+  tomcat-host-public: ""
+  platform: ""
+  hbase-host: ""
