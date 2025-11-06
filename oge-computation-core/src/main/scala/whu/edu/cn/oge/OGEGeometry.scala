@@ -524,7 +524,6 @@ object OGEGeometry {
         new OGEGeometry(Geometry.buffer(geom.geometry, distance, crs), geom.geodesic)
     }
     result
-    //TODO mcr暂不区分测地线缓冲区和欧式缓冲区
   }
 
   /**
