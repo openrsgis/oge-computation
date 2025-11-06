@@ -150,11 +150,6 @@
             <version>${parent.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>whu.edu.cn</groupId>
-            <artifactId>oge-computation-plugin</artifactId>
-            <version>${parent.version}</version>
-        </dependency>
 
         <!-- 其他本地依赖 -->
         <dependency>
@@ -275,7 +270,6 @@
                                 <!-- 包含项目内依赖到jar -->
                                 <includes>
                                     <include>whu.edu.cn:oge-computation-common</include>
-                                    <include>whu.edu.cn:oge-computation-plugin</include>
                                 </includes>
                             </artifactSet>
                             <!-- 配置jar输出地址 -->

@@ -27,7 +27,6 @@ import whu.edu.cn.entity._
 import whu.edu.cn.entity.cube.CubeTileKey
 import whu.edu.cn.jsonparser.JsonToArg
 import whu.edu.cn.oge._
-import whu.edu.cn.plugin.PluginLoader
 import whu.edu.cn.util.HttpRequestUtil.sendPost
 import whu.edu.cn.util.{ClientUtil, JedisUtil, PostSender}
 
@@ -1550,42 +1549,7 @@ object Trigger extends StrictLogging with Serializable {
         case "FeatureCollection.cultivatedLandSuitability" =>
           featureCollectionList += (UUID -> FeatureCollection.cultivatedLandSuitability(sc, args("landTable"), args("ecologyTable"), args("urbanTable"), args("slopeTable")))
         case _ =>
-          logger.info(s"将从插件调用算子：$funcName")
-          if (!PluginLoader.executors.contains(funcName)) {
-            val message = s"不存在名为${funcName}的插件！"
-            logger.error(message)
-            throw new UnsupportedOperationException(message)
-          }
-          val executor = PluginLoader.executors(funcName)
-          val argValues = resolveDAGParams(args)
-          val result = executor.execute(sc, argValues)
-          dagResultCacheMap += (UUID -> result)
-          result match {
-            case _: IntData =>
-              intList += (UUID -> result.asInstanceOf[IntData].data)
-            case _: LongData =>
-              intList += (UUID -> result.asInstanceOf[LongData].data.toInt)
-            case _: DoubleData =>
-              doubleList += (UUID -> result.asInstanceOf[DoubleData].data)
-            case _: StringData =>
-              stringList += (UUID -> result.asInstanceOf[StringData].data)
-            case _: CoverageRDD =>
-              val coverage = result.asInstanceOf[CoverageRDD]
-              coverageRddList += (UUID -> (coverage.data, coverage.metadata))
-            case _: CoverageCollectionRDD =>
-              val coverageCollection = result.asInstanceOf[CoverageCollectionRDD]
-              val collectionMap = mutable.Map.empty[String, (RDD[(SpaceTimeBandKey, MultibandTile)], TileLayerMetadata[SpaceTimeKey])]
-              for ((key, value) <- coverageCollection.data) {
-                collectionMap += (key -> (value.data, value.metadata))
-              }
-              coverageCollectionRddList += (UUID -> collectionMap.toMap)
-            case _: FeatureRDD =>
-              featureRddList += (UUID -> result.asInstanceOf[FeatureRDD].data)
-            case _ =>
-              val message = s"Unsupported Type: ${result.getClass.getName}"
-              logger.error(message)
-              throw new IllegalArgumentException(message)
-          }
+          logger.info(s"No such function：$funcName")
       }
     } catch {
       case e: InvocationTargetException =>

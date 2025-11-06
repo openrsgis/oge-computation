@@ -7,7 +7,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>oge-computation-plugin</module>
         <module>oge-computation-common</module>
         <module>oge-computation-core</module>
     </modules>
